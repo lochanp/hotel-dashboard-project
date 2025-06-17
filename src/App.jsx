@@ -1,29 +1,29 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { Toaster } from 'react-hot-toast'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { DarkModeProvider } from './context/DarkModeContext'
-import Account from './pages/Account'
-import BookingDetails from './pages/BookingDetails'
-import Bookings from './pages/Bookings'
-import Cabins from './pages/Cabins'
-import Checkin from './pages/Checkin'
-import Dashboard from './pages/Dashboard'
-import Login from './pages/Login'
-import PageNotFound from './pages/PageNotFound'
-import Settings from './pages/Settings'
-import Users from './pages/Users'
-import GlobalStyles from './styles/GlobalStyles'
-import AppLayout from './ui/AppLayout'
-import ProtectedRoute from './ui/ProtectedRoute'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Toaster } from 'react-hot-toast';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { DarkModeProvider } from './context/DarkModeContext';
+import Account from './pages/Account';
+import BookingDetails from './pages/BookingDetails';
+import Bookings from './pages/Bookings';
+import Cabins from './pages/Cabins';
+import Checkin from './pages/Checkin';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import PageNotFound from './pages/PageNotFound';
+import Settings from './pages/Settings';
+import Users from './pages/Users';
+import GlobalStyles from './styles/GlobalStyles';
+import AppLayout from './ui/AppLayout';
+import ProtectedRoute from './ui/ProtectedRoute';
 
-const queryClient = new QueryClient({})
+const queryClient = new QueryClient({});
 
 const App = () => {
   return (
     <DarkModeProvider>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         <GlobalStyles />
         <BrowserRouter>
           <Routes>
@@ -70,10 +70,10 @@ const App = () => {
         />
       </QueryClientProvider>
     </DarkModeProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 
 // import styled from 'styled-components';
 // import GlobalStyles from './styles/GlobalStyles';
