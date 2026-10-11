@@ -1,21 +1,21 @@
-import styled from 'styled-components'
-import BookingDataBox from '../../features/bookings/BookingDataBox'
+import styled from 'styled-components';
+import BookingDataBox from '../../features/bookings/BookingDataBox';
 
-import Button from '../../ui/Button'
-import ButtonGroup from '../../ui/ButtonGroup'
-import ButtonText from '../../ui/ButtonText'
-import Heading from '../../ui/Heading'
-import Row from '../../ui/Row'
-import Spinner from '../../ui/Spinner'
+import Button from '../../ui/Button';
+import ButtonGroup from '../../ui/ButtonGroup';
+import ButtonText from '../../ui/ButtonText';
+import Heading from '../../ui/Heading';
+import Row from '../../ui/Row';
+import Spinner from '../../ui/Spinner';
 
-import { useEffect, useState } from 'react'
-import { useMoveBack } from '../../hooks/useMoveBack'
-import Checkbox from '../../ui/Checkbox'
-import { formatCurrency } from '../../utils/helpers'
+import { useEffect, useState } from 'react';
+import { useMoveBack } from '../../hooks/useMoveBack';
+import Checkbox from '../../ui/Checkbox';
+import { formatCurrency } from '../../utils/helpers';
 // import { useBooking } from '../bookings/useBooking'
-import useBooking from '../bookings/useBooking'
-import useSettings from '../settings/useSettings'
-import { useCheckin } from './useCheckin'
+import useBooking from '../bookings/useBooking';
+import useSettings from '../settings/useSettings';
+import { useCheckin } from './useCheckin';
 
 const Box = styled.div`
   /* Box */
@@ -23,25 +23,25 @@ const Box = styled.div`
   border: 1px solid var(--color-grey-100);
   border-radius: var(--border-radius-md);
   padding: 2.4rem 4rem;
-`
+`;
 
 function CheckinBooking() {
-  const [confirmPaid, setConfirmPaid] = useState(false)
-  const [addBreakfast, setAddBreakfast] = useState(false)
+  const [confirmPaid, setConfirmPaid] = useState(false);
+  const [addBreakfast, setAddBreakfast] = useState(false);
   // const [optionalBreakfastPrice, setoptionalBreakfastPrice] = useState()
-  const { booking, isLoading } = useBooking()
-  const { settingsData, isLoading: isLoadingSettings } = useSettings()
+  const { booking, isLoading } = useBooking();
+  const { settingsData, isLoading: isLoadingSettings } = useSettings();
 
-  useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking])
+  useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking]);
 
-  const moveBack = useMoveBack()
-  const { checkin, isCheckingIn } = useCheckin()
+  const moveBack = useMoveBack();
+  const { checkin, isCheckingIn } = useCheckin();
 
-  if (isLoading || isLoadingSettings) return <Spinner />
+  if (isLoading || isLoadingSettings) return <Spinner />;
 
-  const { id: bookingId, guests, totalPrice, numGuests, hasBreakfast, numNights } = booking
+  const { id: bookingId, guests, totalPrice, numGuests, hasBreakfast, numNights } = booking;
 
-  const optionalBreakfastPrice = !isLoadingSettings && settingsData.BreakfastPrice * numNights * numGuests
+  const optionalBreakfastPrice = !isLoadingSettings && settingsData.BreakfastPrice * numNights * numGuests;
 
   function handleCheckin() {
     if (confirmPaid) {
@@ -53,14 +53,12 @@ function CheckinBooking() {
             extrasPrice: optionalBreakfastPrice,
             totalPrice: totalPrice + optionalBreakfastPrice
           }
-        })
+        });
       } else {
-        checkin({ bookingId, breakfast: {} })
+        checkin({ bookingId, breakfast: {} });
       }
     }
   }
-
-  console.log(settingsData)
 
   return (
     <>
@@ -80,8 +78,8 @@ function CheckinBooking() {
               <Checkbox
                 checked={addBreakfast}
                 onChange={() => {
-                  setAddBreakfast(add => !add)
-                  setConfirmPaid(false)
+                  setAddBreakfast(add => !add);
+                  setConfirmPaid(false);
                 }}
                 id='breakfast'
               >
@@ -117,7 +115,7 @@ function CheckinBooking() {
         </>
       )}
     </>
-  )
+  );
 }
 
-export default CheckinBooking
+export default CheckinBooking;
